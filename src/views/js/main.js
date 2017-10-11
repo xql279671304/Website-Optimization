@@ -401,7 +401,7 @@ var resizePizzas = function(size) {
 
   // 改变滑窗前披萨的尺寸值
   function changeSliderLabel(size) {
-    var pizzaSize = document.querySelector("#pizzaSize");
+    var pizzaSize = document.getElementById('pizzaSize');
     switch(size) {
       case "1":
         pizzaSize.innerHTML = "Small";
@@ -447,7 +447,7 @@ var resizePizzas = function(size) {
 
   // 遍历披萨的元素并改变它们的宽度
   function changePizzaSizes(size) {
-    var randomPizzaContainer = document.querySelectorAll(".randomPizzaContainer");
+    var randomPizzaContainer = document.getElementsByClassName('randomPizzaContainer');
     for (var i = 0; i < randomPizzaContainer.length; i++) {
       var dx = determineDx(size);/*randomPizzaContainer[i], */
       // var newwidth = (randomPizzaContainer[i].offsetWidth + dx) + 'px';
@@ -501,10 +501,11 @@ var moverList;
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-  !moverList && (moverList = document.querySelectorAll('.mover'));
+  !moverList && (moverList = document.getElementsByClassName('mover'));
+  var scollR = document.body.scrollTop / 1250;
   for (var i = 0; i < moverList.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-      moverList[i].style.left = moverList[i].basicLeft + 100 * phase + 'px';
+    var phase = Math.sin(scollR + (i % 5));
+    moverList[i].style.left = moverList[i].basicLeft + 100 * phase + 'px';
   }
 
   // 再次使用User Timing API。这很值得学习
@@ -518,14 +519,14 @@ function updatePositions() {
 }
 
 // 在页面滚动时运行updatePositions函数 滚动的时候可以不用攞动位置
-// window.addEventListener('scroll', updatePositions);
+window.addEventListener('scroll', updatePositions);
 
 // 当页面加载时生成披萨滑窗
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  var winH = window.screen.availHeight;
-  var movingPizzas1 = document.querySelector("#movingPizzas1");
+  var winH = window.innerHeight;
+  var movingPizzas1 = document.getElementById('movingPizzas1');
   for (var i = 0; i < 200; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';

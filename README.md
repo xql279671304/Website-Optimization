@@ -56,4 +56,34 @@
 * <a href="http://getbootstrap.com/css/">Bootstrap CSS</a>
 * <a href="http://getbootstrap.com/components/">Bootstrap组件</a>
 
+## 优化完成
+
+####   index.html 在移动设备和桌面上的 PageSpeed 分数
+
+    首先是使用gulp压缩js、css、图片、html文件，用node搭建服务器来做缓存，将资源进行缓存。
+    命令是： gulp serve:dist 
+            node run dev 
+            ./ngrok http 8089
+
+![手机pageSpeed](./images/mobile.png)
+![PCpageSpeed](./images/pc.png)
+    
+    
+#### pizza.html 页面优化
+
+    滑动尺寸调整改用百分比来展示
+    滚动时候不需要重新绘制背景pizza位置
+    提出循环里面的查找DOM对象
+
+    
+    
+    
+#### 其他
+
+    print.css 添加媒体  
+    
+#### 新增修改优化
+
+    重新优化了滚动时披萨背景图位置更改
+    更改了 querySelector的使用
 
